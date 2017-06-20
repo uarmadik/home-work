@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width">
+    <title>Приклад: конвертор валют</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+        form {
+            background-color: cornsilk;
+            font-family: Arial, sans-serif;
+            color: darkblue;
+            padding: 10px;
+            position: relative;
+            max-width: 600px;
+            /*min-width: 580px;*/
+            box-shadow: 0px 0px 4px 1px #999;
+        }
+            form h1 {
+                color: cornflowerblue;
+            }
+        input[type="number"]{
+            width: 65px;
+            padding: 0.2em;
+        }
+        select {
+            padding: 0.2em;
+            margin-right: 25px;
+        }
+
+        input[type="submit"] {
+            background-color: cornflowerblue;
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.2em;
+            padding: .5em 1em;
+        }
+        #result {
+            /*display: none;*/
+            background-color: cornsilk;
+            margin: 0;
+            color: darkblue;
+            font-size: 1.2em;
+            max-width: 400px;
+            position: absolute;
+            bottom: .5em;
+            right: 1em;
+        }
+
+        @media (max-width: 580px) {
+            #result {
+                position: static;
+                margin-top: .5em;
+            }
+        }
+    </style>
+
+
+</head>
+<body>
+
+    <form action="scripts/convert.php" id="convert_form">
+        <h1>Конвертор валюти</h1>
+        <label>Конвертувати валюту:</br>
+            <input type="number" min="1" name="quantity" placeholder="Сума">
+            <select name="currency_from">
+                <option value="uah">UAH</option>
+                <option value="usd">USD</option>
+                <option value="eur">EUR</option>
+                <option value="gbp">GBP</option>
+            </select>
+        </label>
+        <label>у:
+            <select name="currency_to">
+                <option value="uah">UAH</option>
+                <option value="usd">USD</option>
+                <option value="eur">EUR</option>
+                <option value="gbp">GBP</option>
+            </select>
+        </label>
+    </br></br>
+        <input type="submit" value="Конвертувати">
+        <p id="result"></p>
+
+
+    </form>
+
+    <script>
+    function funcBefore(){
+        console.log('---before---');
+        var imgBefore = document.createElement("img");
+        imgBefore.setAttribute("src","http://bestanimations.com/Animals/Mammals/Cats/Lions/animated-lion-gif-17.gif");
+        imgBefore.setAttribute("width", "100");
+        console.log(imgBefore);
+       result.appendChild(imgBefore);
+       //return;
+    }
+        var convertForm = document.getElementById('convert_form');
+        convertForm.addEventListener("submit", function (e) {
+            $.ajax({
+                type: "GET",
+                url: "scripts/convert.php",
+                dataType: "text",
+                data: $('#convert_form').serialize(),
+                beforeSend: funcBefore,
+                success: function(data){
+                    var result = document.getElementById("result");
+                    result.innerHTML = data;
+                    //result.style.display = "block";
+                }
+             })
+
+            e.preventDefault();
+        })
+
+    </script>
+
+</body>
+</html>
