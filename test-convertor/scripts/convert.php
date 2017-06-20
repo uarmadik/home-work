@@ -1,15 +1,14 @@
 <?php
 
-#курс гривні до доллара 26
-#курс гривні до євро 29,15
-#курс гривні до фунту стрерлінгів 33,11
+//курс гривні до доллара 26
+//курс гривні до євро 29,15
+//курс гривні до фунту стрерлінгів 33,11
 
     $uah = 1;
     $usd = 26;
     $eur = 29.15;
     $gbp = 33.11;
 
-//echo $_GET['currency_from'] / $_GET['currency_to'];
     $currency_from = $_GET['currency_from'];
     $currency_to = $_GET['currency_to'];
     $quantity = $_GET['quantity'];
@@ -20,9 +19,7 @@
     elseif ($quantity <0){
         echo "Сума не може бути від’ємною!";
     }
-
     else {
-
         switch ($currency_from) {
             case "usd":
                 $quantity_from = $usd;
@@ -73,28 +70,4 @@
 
     }
 
-
 ?>
-
-
-<!--
-$coef_usd = 26;
-$coef_eur = 29.15;
-$coef_gbp = 33.11;
-
-$currency = $_GET['currency'];
-$quantity = $_GET['quantity'];
-
-if ($currency == 'usd') {
-$result = $quantity * $coef_usd;
-
-}
-elseif ($currency == 'eur'){
-$result = $quantity * $coef_eur;
-}
-elseif ($currency == 'gbp'){
-$result = $quantity * $coef_gbp;
-}
-
-echo "Результат: $result грн за $quantity $currency";
--->
