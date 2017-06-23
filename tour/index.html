@@ -37,7 +37,6 @@
 
     <script>
         var formTour = document.getElementById("tour-form");
-        console.log(formTour);
         formTour.addEventListener("submit", function (e) {
             $.ajax({
                 type: "GET",
@@ -45,10 +44,18 @@
                 dataType: 'text',
                 data: $('#tour-form').serialize(),
                 success: function(data) {
-                    var result = document.createElement("p");
-                    result.innerHTML = "<b>" + data + "</b>";
-                    document.body.appendChild(result);
+                    if (document.getElementById("result")) {
+                        var result = document.getElementById("result");
+                        result.innerHTML = "<b>" + data + "</b>";
+                    }
+                    else {
+                        var result = document.createElement("p");
+                        result.setAttribute("id", "result");
+                        result.innerHTML = "<b>" + data + "</b>";
+                        document.body.appendChild(result);
+                    }
                 }
+
             })
 
             e.preventDefault();
