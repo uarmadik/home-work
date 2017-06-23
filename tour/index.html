@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tour</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+
+    <div>
+        <label> Форма підрахунку туру для відпочинку</br></br>
+        <form action="php/count.php" name="tour" id="tour-form">
+            <select name="country" >
+                <option value="" disabled selected>Країна:</option>
+                <option value="Turkey">Туреччина</option>
+                <option value="Egypt">Єгипет</option>
+                <option value="Italy">Італія</option>
+            </select>
+            <span>Кількість днів:</span>
+            <select name="number-of-days">
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="5">5</option>
+                <option value="7">7</option>
+                <option value="10">10</option>
+                <option value="14">14</option>
+            </select>
+            </br></br>
+            <label>
+                Я маю знижку аж 5%
+                <input type="checkbox" name="discount">
+            </label>
+            <input type="submit" value="Порахувати">
+        </form>
+      </label>
+    </div>
+
+    <script>
+        var formTour = document.getElementById("tour-form");
+        console.log(formTour);
+        formTour.addEventListener("submit", function (e) {
+            $.ajax({
+                type: "GET",
+                url: "php/count.php",
+                dataType: 'text',
+                data: $('#tour-form').serialize(),
+                success: function(data) {
+                    var result = document.createElement("p");
+                    result.innerHTML = "<b>" + data + "</b>";
+                    document.body.appendChild(result);
+                }
+            })
+
+            e.preventDefault();
+        })
+    </script>
+</body>
+</html>
