@@ -32,10 +32,12 @@
                 dataType: "text",
                 success: function(data) {
                     if (!isNaN(data)){
-                        data = "Результат: " + data;
+                        document.getElementById("result").innerHTML = "Результат: " + data;
+                        document.querySelector('#calcForm input[name="number_from"]').value = data;
                     }
-                    document.getElementById("result").innerHTML = data;
-                    document.querySelector('#calcForm input[name="number_from"]').value = data;
+                    else {
+                        document.getElementById("result").innerHTML = data;
+                    }
                 }
             })
             e.preventDefault();
