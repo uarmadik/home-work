@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="calc-wrap">
+        <form action="php/calc.php" method="GET" id="calcForm">
+            <input type="number" name="number_from" placeholder="Число a">
+            <select name="operation">
+                <option value="adding">+</option>
+                <option value="subtracting">-</option>
+                <option value="multiplying">*</option>
+                <option value="dividing">/</option>
+                <option value="remainder">%</option>
+                <option value="logarithm">log (а при основі b)</option>
+            </select>
+            <input type="number" name="number_to" placeholder="Число b">
+            <input type="submit" value="Calc!">
+        </form>
+        <p id="result"></p>
+    </div>
+    <script>
+        var calcForm = document.getElementById("calcForm");
+        calcForm.addEventListener("submit", function (e) {
+            $.ajax({
+                type: "GET",
+                url: "php/calc.php",
+                data: $('#calcForm').serialize(),
+                dataType: "text",
+                success: function(data) {
+                    if (!isNaN(data)){
+                        data = "Результат: " + data;
+                    }
+                    document.getElementById("result").innerHTML = data;
+                    document.querySelector('#calcForm input[name="number_from"]').value = data;
+                }
+            })
+            e.preventDefault();
+        })
+    </script>
+</body>
+</html>
