@@ -2,7 +2,7 @@
 $number_from = $_GET['number_from'];
 $number_to = $_GET['number_to'];
 $operation = $_GET['operation'];
-
+$result = '';
 
     if ((is_numeric($number_from)) && (is_numeric($number_to)) && !is_numeric($operation)) {
         if ($operation == 'adding') {
@@ -23,10 +23,6 @@ $operation = $_GET['operation'];
         if ($operation == 'logarithm') {
             $result = log($number_from, $number_to);
         }
-    }
-    elseif (!$_GET) {
-        echo $result . " get without query ";
-        
     }
     else {
         echo "Помилка!";
