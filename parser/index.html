@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Parser</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+        .parser-wrap {
+            margin: 1em;
+        }
+            .parser-wrap h1 {
+                font-size: 1.5em;
+                font-family: sans-serif;
+                color: dimgray;
+            }
+                .parser-wrap input {
+                    margin: .5em 0;
+                    padding: .5em;
+                    border-radius: .5em;
+                    border: 1px solid #34b266;
+                    outline: none;
+                    font-size: 1em;
+                    box-shadow: 1px 1px 1px #999;
+                }
+                .parser-wrap input[type="text"] {
+                    min-width: 300px;
+                }
+                .parser-wrap input[type="submit"] {
+                    background-color: #fff;
+                    font-weight: bold;
+                }
+                .parser-wrap input[type="submit"]:hover {
+                    background-color: #34b266;
+                }
+            .parser-wrap #result {
+                max-width: 720px;
+                font-family: sans-serif;
+                margin-top: 1em;
+                padding: 5px;
+                border: 1px solid #999;
+                border-radius: .5em;
+                box-shadow: 1px 1px 1px #999;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="parser-wrap">
+        <h1>Парсинг сайту (jpg, png, gif)</h1>
+        <form action="parser.php" id="parseForm">
+            <input type="text" name="url-link" placeholder="Type URL here...">
+            <input type="submit" value="Parse!">
+        </form>
+
+    </div>
+
+
+
+
+<script>
+    var parseForm = document.getElementById('parseForm');
+    parseForm.addEventListener('submit', function (e) {
+        $.ajax({
+            type: "GET",
+            url: 'parser.php',
+            data: $('#parseForm').serialize(),
+            success: function(data) {
+                var resultBlock = document.getElementById('result');
+                if (resultBlock) {
+                    resultBlock.innerHTML = data;
+                }
+                else {
+                    var resultBlock = document.createElement('div');
+                    resultBlock.setAttribute('id', 'result');
+                    document.querySelector('.parser-wrap').appendChild(resultBlock);
+                    resultBlock.innerHTML = data;
+                }
+            }
+        })
+        e.preventDefault();
+    })
+
+</script>
+</body>
+</html>
