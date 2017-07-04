@@ -1,13 +1,14 @@
 <?php
     
-//курс гривні до доллара 26
-//курс гривні до євро 29,15
 //курс гривні до фунту стрерлінгів 33,11
 
     $uah = 1;
-    $usd = 26;
-    $eur = 29.15;
+    $usd = 0;
+    $eur = 0;
     $gbp = 33.11;
+
+    include_once 'get_currency.php';
+    get_currency(ПриватБанк);
 
     $currency_from = $_GET['currency_from'];
     $currency_to = $_GET['currency_to'];
