@@ -1,0 +1,8 @@
+{
+  "name": "uarmadik/time",
+  "description": "A package to test packagist",
+  "require": {
+    "php": "^5.3.3 || ^7.1",
+    "another-vendor/package": "1.*"
+  }
+}
