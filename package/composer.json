@@ -14,11 +14,11 @@
     }
   ],
   "require": {
-    "php": "^5.3.3 || ^7.1",
+    "php": "^5.3.3 || ^7.1"
   },
   "autoload": {
     "psr-4": {
-      "Time": "time.php"
+      "Time": "package"
     }
   }
 }
