@@ -1,14 +1,16 @@
 <?php
-    
-//курс гривні до фунту стрерлінгів 33,11
 
-    $uah = 1;
-    $usd = 0;
-    $eur = 0;
-    $gbp = 33.11;
+include_once 'get_currency.php';
+    $currency_now = get_currency('ПриватБанк'); # тут буде масив з курсом usd eur rub
+    $eur = $currency_now['eur'];
+    $usd = $currency_now['usd'];
 
-    include_once 'get_currency.php';
-    get_currency(ПриватБанк);
+    define("UAH", 1);
+    define("USD", $usd);
+    define("EUR", $eur);
+
+global $currency_from;
+global $currency_to;
 
     $currency_from = $_GET['currency_from'];
     $currency_to = $_GET['currency_to'];
@@ -21,44 +23,14 @@
         echo "Сума не може бути від’ємною!";
     }
     else {
+        include_once 'assigning_currency.php';
 
-        switch ($currency_from) {
-            case "usd":
-                $quantity_from = $usd;
-                break;
-            case "eur":
-                $quantity_from = $eur;
-                break;
-            case "gbp":
-                $quantity_from = $gbp;
-                break;
-            case "uah":
-                $quantity_from = $uah;
-                break;
-            default:
-                echo "Не вибрано валюту";
-                break;
-        }
+        $from = assigning_currency($currency_from); // присвоєння значення валюти чисельнику
+        $to = assigning_currency($currency_to); // присвоєння значення валюти знаменнику
 
-        switch ($currency_to) {
-            case "uah":
-                $quantity_to = $uah;
-                break;
-            case "gbp":
-                $quantity_to = $gbp;
-                break;
-            case "eur":
-                $quantity_to = $eur;
-                break;
-            case "usd":
-                $quantity_to = $usd;
-                break;
-            default:
-                echo "Не вибрано валюту";
-                break;
-        }
+
         if ($quantity) {
-            $result = $quantity_from * $quantity / $quantity_to;
+            $result = $from * $quantity / $to;
 
             $result = round($result, 2);
             $currency_from = strtoupper($currency_from);
@@ -71,4 +43,3 @@
         }
 
     }
-?>

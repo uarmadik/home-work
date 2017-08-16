@@ -17,6 +17,8 @@
         }
             form h1 {
                 color: cornflowerblue;
+                margin: 0;
+                margin-bottom: .5em;
             }
         input[type="number"]{
             width: 65px;
@@ -33,6 +35,10 @@
             font-weight: bold;
             font-size: 1.2em;
             padding: .5em 1em;
+        }
+        input[type="submit"]:hover {
+            cursor: pointer;
+            background-color: #79a3ef;
         }
         #result {
             /*display: none;*/
@@ -66,7 +72,6 @@
                 <option value="uah">UAH</option>
                 <option value="usd">USD</option>
                 <option value="eur">EUR</option>
-                <option value="gbp">GBP</option>
             </select>
         </label>
         <label>у:
@@ -74,7 +79,6 @@
                 <option value="uah">UAH</option>
                 <option value="usd">USD</option>
                 <option value="eur">EUR</option>
-                <option value="gbp">GBP</option>
             </select>
         </label>
     </br></br>
@@ -86,9 +90,8 @@
 
     <script>
     function funcBefore(){
-        console.log('---before---');
         var imgBefore = document.createElement("img");
-        imgBefore.setAttribute("src","http://bestanimations.com/Animals/Mammals/Cats/Lions/animated-lion-gif-17.gif");
+        imgBefore.setAttribute("src","http://www.freeiconspng.com/uploads/spinner-icon-0.gif");
         imgBefore.setAttribute("width", "100");
         console.log(imgBefore);
        result.appendChild(imgBefore);

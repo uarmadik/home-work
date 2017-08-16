@@ -1,7 +1,17 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Igor
- * Date: 05.07.2017
- * Time: 16:25
- */
+
+function assigning_currency($currency) {
+    switch ($currency) {
+        case 'usd':
+            $currency = USD;
+            return $currency;
+        case 'uah':
+            $currency = UAH;
+            return $currency;
+        case 'eur':
+            $currency = EUR;
+            return $currency;
+    }
+
+    return $currency;
+}

@@ -10,12 +10,15 @@ function get_currency($bank_name) {
         $bank = $value->title;
         if ($bank == $bank_name) {
             $eur_usd_rub = $value->currencies;
-            $EUR = $eur_usd_rub->EUR;
             $USD = $eur_usd_rub->USD;
-            global $usd;
-            global $eur;
-            $usd = $USD->ask;
-            $eur = $EUR->ask;
+            $EUR = $eur_usd_rub->EUR;
+            $RUB = $eur_usd_rub->RUB;
+
+            $result = array('eur' => $EUR->ask, 'usd' => $USD->ask, 'rub'=>$RUB->ask,);
+
+            return $result;
         }
     }
 }
+
+//var_dump(get_currency('ПриватБанк'));
