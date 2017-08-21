@@ -32,7 +32,7 @@ class Cat extends Animal
     }
 }
 
-$cat = new Cat("garfild");
-echo $cat->getName();
+$cat = new Cat("garfield");
+echo $cat->getName(); // Garfield
     echo '<br />';
-echo $cat->meow();
+echo $cat->meow(); // Cat Garfield is saying meow
