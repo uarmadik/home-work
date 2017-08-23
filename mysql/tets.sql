@@ -22,3 +22,9 @@ INSERT INTO books VALUES(NULL, 'На західному фронті без зм
 INSERT INTO books VALUES(NULL, 'Моє життя та робота', 2);
 
 SELECT book_name FROM books WHERE author_id=1;
+
+/* JOIN */
+
+SELECT books.book_name, authors.second_name
+FROM books
+INNER JOIN authors ON books.author_id=authors.id;
